@@ -173,7 +173,7 @@ export const DriverView = () => {
                 variant="accent" 
                 className="w-full" 
                 size="lg"
-                onClick={() => openGoogleMaps(currentDelivery.address)}
+                onClick={() => open("https://maps.app.goo.gl/MaWWCNffXPfUMfw97")}
               >
                 <Navigation className="w-4 h-4 mr-2" />
                 Open in Maps

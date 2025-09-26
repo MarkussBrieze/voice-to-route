@@ -24,6 +24,7 @@ interface ParsedOrder {
   address: string;
   date: string;
   time: string;
+  notes?: string;
   originalText: string;
 }
 
@@ -62,6 +63,7 @@ export const VoiceCapture = () => {
       address: "Brīvības iela 123, Riga, LV-1001",
       date: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0], // tomorrow
       time: "10:00",
+      notes: "Please call upon arrival.",
       originalText: text
     };
 
@@ -254,7 +256,17 @@ export const VoiceCapture = () => {
                   </div>
                 </div>
 
-                <Button className="w-full gradient-success text-success-foreground">
+{/*                 <div className="space-y-2">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <Clock className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-medium">Time:</span>
+                    </div>
+                    <p className="text-sm ml-6">{parsedOrder.notes}</p>
+                  </div>
+                </div> */}
+
+
+                <Button className="w-full gradient-success text-success-foreground"> {/*TODO: Must dissapear after click*/}
                   <CheckCircle className="w-4 h-4 mr-2" />
                   Add to Orders Table
                 </Button>
