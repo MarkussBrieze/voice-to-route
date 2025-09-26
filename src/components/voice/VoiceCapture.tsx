@@ -34,6 +34,7 @@ export const VoiceCapture = () => {
   const [transcription, setTranscription] = useState("");
   const [parsedOrder, setParsedOrder] = useState<ParsedOrder | null>(null);
   const [recordingTime, setRecordingTime] = useState(0);
+  const [isCardVisible, setIsCardVisible] = useState(true); /* TODO: added this to hide the card after clicking "Add to Orders Table" button */
   const { toast } = useToast();
 
   // Simulate recording timer
@@ -70,11 +71,31 @@ export const VoiceCapture = () => {
     setParsedOrder(mockParsedOrder);
     setIsProcessing(false);
 
+    /* This must pop-up after clicking "Add to Orders Table" button!!! TODO - replace it!
+     toast({
+      title: "Order Parsed Successfully",
+      description: "New delivery order has been created and added to the orders table.",
+    }); */
+
+  };
+
+  //TODO: created this function to handle the button click because Lavlalable didn't do it:
+  const handleAddToOrders = () => {
     toast({
       title: "Order Parsed Successfully",
       description: "New delivery order has been created and added to the orders table.",
     });
+    setIsCardVisible(false); // Hide the card after clicking the button
+    //Reset states
+    setParsedOrder(null);
+    setTranscription("");
   };
+
+/* 
+toast({
+      title: "Order Parsed Successfully",
+      description: "New delivery order has been created and added to the orders table.",
+    }); */
 
   const handleStartRecording = () => {
     setIsRecording(true);
@@ -266,7 +287,10 @@ export const VoiceCapture = () => {
                 </div> */}
 
 
-                <Button className="w-full gradient-success text-success-foreground"> {/*TODO: Must dissapear after click*/}
+                <Button 
+                  className="w-full gradient-success text-success-foreground"
+                  onClick={handleAddToOrders}
+                >
                   <CheckCircle className="w-4 h-4 mr-2" />
                   Add to Orders Table
                 </Button>
