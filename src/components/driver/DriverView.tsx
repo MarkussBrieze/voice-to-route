@@ -162,7 +162,7 @@ export const DriverView = () => {
 
             {currentDelivery.notes && (
               <div className="p-3 bg-warning-light rounded-lg">
-                <p className="text-sm text-warning-foreground">
+                <p className="text-sm">
                   <strong>Note:</strong> {currentDelivery.notes}
                 </p>
               </div>
