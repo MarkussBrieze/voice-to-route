@@ -17,6 +17,7 @@ import {
   Calendar
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useRef } from "react";
 
 interface ParsedOrder {
   clientName: string;
@@ -129,6 +130,29 @@ toast({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Ref for the hidden file input
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function triggerFileUpload(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  }
+
+  // Handler for file upload (stub, implement as needed)
+  function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>): void {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Implement audio file processing here
+      toast({
+        title: "Audio File Uploaded",
+        description: `File "${file.name}" selected for processing.`,
+      });
+      // Simulate processing (optional)
+      simulateVoiceProcessing("Simulated transcription from uploaded audio file.");
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Hero Section */}
@@ -199,10 +223,18 @@ toast({
                 variant="outline"
                 className="w-full"
                 disabled={isRecording || isProcessing}
+                onClick={triggerFileUpload} /* TODO: implement this function */
               >
                 <Upload className="w-4 h-4 mr-2" />
                 Upload Audio File
               </Button>
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileUpload}
+                accept="audio/*"
+                className="hidden"
+              />
             </div>
           </CardContent>
         </Card>
