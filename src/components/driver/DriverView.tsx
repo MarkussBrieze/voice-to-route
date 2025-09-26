@@ -14,6 +14,7 @@ import {
   ExternalLink
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { openGoogleMaps } from "@/lib/utils";
 
 interface DeliveryStop {
   id: string;
@@ -168,7 +169,12 @@ export const DriverView = () => {
             )}
 
             <div className="space-y-2">
-              <Button variant="accent" className="w-full" size="lg">
+              <Button 
+                variant="accent" 
+                className="w-full" 
+                size="lg"
+                onClick={() => openGoogleMaps(currentDelivery.address)}
+              >
                 <Navigation className="w-4 h-4 mr-2" />
                 Open in Maps
                 <ExternalLink className="w-3 h-3 ml-2" />
@@ -244,7 +250,12 @@ export const DriverView = () => {
               
               {delivery.status === "current" && (
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <Button variant="outline" size="sm" className="text-xs">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs"
+                    onClick={() => openGoogleMaps(delivery.address)}
+                  >
                     <Navigation className="w-3 h-3 mr-1" />
                     Navigate
                   </Button>

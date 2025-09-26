@@ -15,6 +15,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { openGoogleMaps, openGoogleMapsRoute } from "@/lib/utils";
 
 interface RouteStop {
   id: string;
@@ -156,7 +157,11 @@ export const RoutePlanner = () => {
 
                 {/* Actions */}
                 <div className="space-y-2">
-                  <Button variant="success" className="w-full">
+                  <Button 
+                    variant="success" 
+                    className="w-full"
+                    onClick={() => openGoogleMapsRoute(route.map(stop => stop.address))}
+                  >
                     <Navigation className="w-4 h-4 mr-2" />
                     Open in Google Maps
                     <ExternalLink className="w-3 h-3 ml-2" />
@@ -242,7 +247,11 @@ export const RoutePlanner = () => {
                   </div>
 
                   <div className="flex flex-col items-end space-y-2">
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => openGoogleMaps(stop.address)}
+                    >
                       <Navigation className="w-3 h-3 mr-1" />
                       Navigate
                     </Button>
