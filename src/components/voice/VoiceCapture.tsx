@@ -105,6 +105,7 @@ toast({
       title: "Recording Started",
       description: "Speak clearly to capture the delivery order details.",
     });
+    setIsCardVisible(false); // Hide the card after clicking the button
   };
 
   const handleStopRecording = () => {
@@ -115,6 +116,10 @@ toast({
 
   const handleSimulateCall = () => {
     const mockTranscription = "Hello, this is Jānis from ABC Company. I need a delivery to Elizabetes iela 45, Riga today at 2 PM. You can reach me at +371 9876 5432.";
+    setIsCardVisible(false); // Hide the card after clicking the button
+    //Reset states
+    setParsedOrder(null);
+    setTranscription("");
     simulateVoiceProcessing(mockTranscription);
   };
 
